@@ -3,6 +3,8 @@ import { TMovie } from "../types/Movie";
 import { getYear } from "../utils/date";
 import { fixedNumber } from "../utils/numbers";
 import { Link } from "react-router";
+import MovieRouletteBtn from "../components/FloatingButton";
+import RandomMovieModal from "../components/RandomMovieModal";
 
 const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN;
 
@@ -46,6 +48,10 @@ function App() {
 
     return (
         <>
+            <MovieRouletteBtn
+                children={<RandomMovieModal />}
+                buttonContent="Spin the Movie Roulette"
+            />
             Movies
             <div>
                 {movies.map((movie, id) => (
