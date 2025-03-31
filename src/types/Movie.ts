@@ -9,4 +9,13 @@ export type TMovie = {
     vote_average: number;
     genre_ids: number[];
     original_language: string;
+    production_companies: TProductionCompanies[];
+    popularity: number;
+};
+
+export type TProductionCompanies = {
+    id: number;
+    name: string;
+    logo_path: string;
+    origin_country: string;
 };

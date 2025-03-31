@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { TMovie } from "../types/Movie";
 import Rating from "../components/Rating";
+import { fixedNumber } from "../utils/numbers";
 
 const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN;
 
@@ -85,12 +86,29 @@ function Movie() {
     return (
         <div>
             <h1>Movie: {movie?.original_title}</h1>
-
+            <div>
+                <img
+                    src={`https://image.tmdb.org/t/p/w500/${movie?.poster_path}`}
+                    alt=""
+                />
+                <p>{movie?.overview}</p>
+            </div>
             <Rating
                 myRating={userRating}
                 max={10}
                 handleRating={handleRating}
             />
+            <h2>
+                Rating:{" "}
+                {movie?.vote_average && fixedNumber(movie?.vote_average, 1)}
+            </h2>
+            <h2>Language: {movie?.original_language}</h2>
+            <h2>
+                Production companies:{" "}
+                {movie?.production_companies
+                    .map((company) => company.name)
+                    .join(", ")}
+            </h2>
         </div>
     );
 }
